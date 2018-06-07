@@ -10,11 +10,6 @@
  * **********************************************************************/
  
 #include "matrix.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <tgmath.h>
-
 
 int** getWeights(char* filename) {
     // Open the file and check that it was successful
@@ -65,33 +60,32 @@ int** getWeights(char* filename) {
     }
     
     i = 0;
-    vertexList* tmp2 = frontSentinel;
+    tmp = frontSentinel->next;
+    vertexList* tmp2;
     
     while(tmp != NULL) {
-        tmp = tmp->next;
-        tmp2 = tmp;
+        tmp2 = tmp->next;
         j = i;
         matrix[i][j] = -1;
         while(tmp2 != NULL) {
-            tmp2 = tmp2->next;
             j++;
             weight = calcWeight(tmp->v, tmp2->v);
             matrix[i][j] = weight;
             matrix[j][i] = weight;
+            tmp2 = tmp2->next;
         }
         i++;
+        tmp = tmp->next;
     }
     
     // Free the data for the linked list
     
     
-    for(i = 0; i < count; i++) {
-        for(j = 0; j < count; j++) {
-            printf("%d\t\n", matrix[i][j]);
-        }
-    }
+    return matrix;
 }
 
 int calcWeight(struct vertex* a, struct vertex* b) {
-    return ((int) (sqrt(pow(a->xCoord - b->xCoord, 2)) + (pow(a->yCoord - b->yCoord, 2)) + 0.5));
+    double x = pow(a->xCoord - b->xCoord, 2);
+    double y = pow(a->yCoord - b->yCoord, 2);
+    return (int) (sqrt(x + y) + 0.5);
 }

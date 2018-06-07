@@ -12,6 +12,11 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
 typedef struct vertex {
     int id;
     int xCoord;

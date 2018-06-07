@@ -7,10 +7,6 @@
 
 #include "matrix.h"
 
-#include <stdio.h>
-
-
-
 int main(int argc, char* argv[]) {
     // check for correct number of command line arguments
     if (argc != 2) {
