@@ -11,7 +11,7 @@
  
 #include "matrix.h"
 
-int** getWeights(char* filename) {
+matrix* getWeights(char* filename) {
     // Open the file and check that it was successful
     FILE* infile = fopen(filename, "r");
     if (infile == NULL) {
@@ -51,12 +51,12 @@ int** getWeights(char* filename) {
     
     /********** Create a Matrix of the weights with the list of vertices **********/
     // allocate memory for the matrix
-    int** matrix = malloc(count * sizeof(int*));
+    int** mtx = malloc(count * sizeof(int*));
     int i, 
     j, 
     weight;
     for(i = 0; i < count; i++) {
-        matrix[i] = malloc(count * sizeof(int));
+        mtx[i] = malloc(count * sizeof(int));
     }
     
     i = 0;
@@ -66,22 +66,35 @@ int** getWeights(char* filename) {
     while(tmp != NULL) {
         tmp2 = tmp->next;
         j = i;
-        matrix[i][j] = -1;
+        mtx[i][j] = -1;
         while(tmp2 != NULL) {
             j++;
             weight = calcWeight(tmp->v, tmp2->v);
-            matrix[i][j] = weight;
-            matrix[j][i] = weight;
+            mtx[i][j] = weight;
+            mtx[j][i] = weight;
             tmp2 = tmp2->next;
         }
         i++;
         tmp = tmp->next;
     }
     
+    // create matrix object
+    matrix* matrixObj = malloc(sizeof(matrix));
+    matrixObj->m = mtx;
+    matrixObj->size = count;
+    
     // Free the data for the linked list
     
+    for(i = 0; i < count; i++) {
+        for(j = 0; j < count; j++) {
+            printf("%d  ", mtx[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n\n");
     
-    return matrix;
+    
+    return matrixObj;
 }
 
 int calcWeight(struct vertex* a, struct vertex* b) {

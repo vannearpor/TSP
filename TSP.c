@@ -6,6 +6,8 @@
 //***********************************************
 
 #include "matrix.h"
+#include "graph.h"
+#include "mst.h"
 
 int main(int argc, char* argv[]) {
     // check for correct number of command line arguments
@@ -15,8 +17,10 @@ int main(int argc, char* argv[]) {
     }
     
     // create a matrix with the values for edge weights from the input file
-    int** weight = getWeights(argv[1]);
+    matrix* weight = getWeights(argv[1]);
     
     // find a Minimum Spanning Tree of the graph using the weights matrix
-    //graph* mst = getMST(weight);
+    graph* mst = findMST(weight);
+    
+    printGraph(mst);
 }

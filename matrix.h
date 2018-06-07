@@ -17,6 +17,11 @@
 #include <stdlib.h>
 #include <math.h>
 
+typedef struct matrix {
+    int size;
+    int** m;
+} matrix;
+
 typedef struct vertex {
     int id;
     int xCoord;
@@ -28,7 +33,7 @@ typedef struct vertexList {
     struct vertexList* next;
 } vertexList;
 
-int** getWeights(char* infile);
+matrix* getWeights(char* infile);
 int calcWeight(vertex* a, vertex* b);
 
 #endif
