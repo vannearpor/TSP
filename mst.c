@@ -27,16 +27,19 @@ graph* findMST(matrix* weight) {
         sortWeights(weight->m[i], sortedWeights->m[i], weight->size);
     }
     
-    for(i = 0; i < weight->size; i++) {
-        for(j = 0; j < weight->size; j++) {
-            printf("%d  ", sortedWeights->m[i][j]);
-        }
-        printf(" \n");
-    }
-    printf("\n\n");
     
+    // print matrix for testing
+    // for(i = 0; i < weight->size; i++) {
+    //     for(j = 0; j < weight->size; j++) {
+    //         printf("%d  ", sortedWeights->m[i][j]);
+    //     }
+    //     printf(" \n");
+    // }
+    // printf("\n\n");
+    
+    
+    //initialize the graph
     graph* g = createGraph(weight->size);
-    
     
     // initialize list of vertices added and vertices not added
     adjList* added = malloc(sizeof(adjList));

@@ -85,13 +85,15 @@ matrix* getWeights(char* filename) {
     
     // Free the data for the linked list
     
-    for(i = 0; i < count; i++) {
-        for(j = 0; j < count; j++) {
-            printf("%d  ", mtx[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n\n");
+    
+    // print matrix for testing
+    // for(i = 0; i < count; i++) {
+    //     for(j = 0; j < count; j++) {
+    //         printf("%d  ", mtx[i][j]);
+    //     }
+    //     printf("\n");
+    // }
+    // printf("\n\n");
     
     
     return matrixObj;
