@@ -27,7 +27,6 @@ graph* findMST(matrix* weight) {
         sortWeights(weight->m[i], sortedWeights->m[i], weight->size);
     }
     
-    
     // print matrix for testing
     // for(i = 0; i < weight->size; i++) {
     //     for(j = 0; j < weight->size; j++) {
@@ -82,7 +81,7 @@ graph* findMST(matrix* weight) {
         
         // initilize the vertices for the smallest edge weight
         if(tmp != NULL) {
-            smallestW = 1000;
+            smallestW = 10000000;
         }
         
         // find edge with smallest weight that is connected to the vertices in added and does not form a circuit
@@ -107,7 +106,6 @@ graph* findMST(matrix* weight) {
         removeAdjListNode(notAdded, smallestB);
     }
     
-    
     return g;
 }
 
@@ -117,7 +115,6 @@ void sortWeights(int* weightList, int* sortedList, int size) {
     for(i = 0; i < size; i++) {
         sortedList[i] = i;
     }
-    
     
     //using bubble sort for now so I can complete the mst algorithm.. I'll change it to merge sort later
     for(i = 0; i < size; i++) {
@@ -129,6 +126,4 @@ void sortWeights(int* weightList, int* sortedList, int size) {
             }
         }
     }
-    
-    
 }
